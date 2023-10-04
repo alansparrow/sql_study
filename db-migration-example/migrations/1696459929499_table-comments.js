@@ -1,0 +1,23 @@
+/* eslint-disable camelcase */
+
+exports.shorthands = undefined;
+
+exports.up = (pgm) => {
+  pgm.sql(`
+    CREATE TABLE comments(
+      id SERIAL PRIMARY KEY,
+      created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+      updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+      contents VARCHAR(240) NOT NULL
+    );
+  `);
+};
+
+exports.down = (pgm) => {
+  pgm.sql(`
+    DROP TABLE comments;
+  `);
+};
+
+// npm run migrate create rename contents to body
+// $env:DATABASE_URL="postgres://username:password@localhost:5432/udemy-sql-socialnetwork" ; npm run migrate up
