@@ -27,3 +27,12 @@ SELECT pg_size_pretty(pg_relation_size('users_username_idx'));
 SELECT relname, relkind
 FROM pg_class
 WHERE relkind = 'i';
+
+WITH RECURSIVE countdown(val) AS (
+ 	SELECT 3 AS val -- Initial, Non-recursive query
+	UNION
+	SELECT val - 1 FROM countdown WHERE val > 1 -- Recursive query
+)
+
+SELECT *
+FROM countdown;
