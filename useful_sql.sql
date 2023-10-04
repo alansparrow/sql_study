@@ -66,3 +66,14 @@ REFRESH MATERIALIZED VIEW weekly_likes;
 
 SELECT * 
 FROM weekly_likes;
+
+BEGIN;
+
+UPDATE accounts
+SET balance = balance + 50
+WHERE name = 'Gia';
+
+SELECT * FROM accounts;
+
+COMMIT;
+ROLLBACK;
