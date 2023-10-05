@@ -1,4 +1,5 @@
 const pool = require("../pool");
+const toCamelCase = require("./utils/to-camel-case");
 
 class UserRepo {
   static async find() {
@@ -7,7 +8,9 @@ class UserRepo {
       FROM users;
     `);
 
-    return rows;
+    const parsedRows = toCamelCase(rows);
+
+    return parsedRows;
   }
 
   static async findById() {}
