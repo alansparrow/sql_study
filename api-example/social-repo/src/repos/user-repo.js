@@ -14,12 +14,14 @@ class UserRepo {
   }
 
   static async findById(id) {
-    // Warning: Really BIG security issue!
-    const { rows } = await pool.query(`
+    const { rows } = await pool.query(
+      `
       SELECT *
       FROM users
-      WHERE id = ${id};
-    `);
+      WHERE id = $1;
+    `,
+      [id]
+    );
 
     return toCamelCase(rows)[0];
   }
