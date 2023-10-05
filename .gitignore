@@ -1,2 +1,5 @@
 db-migration-example/node_modules
 db-migration-example/.tmp
+
+api-example/social-repo/node_modules
+api-example/social-repo/.tmp
