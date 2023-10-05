@@ -30,7 +30,8 @@ class UserRepo {
     const { rows } = await pool.query(
       `
       INSERT INTO users (username, bio)
-      VALUES ($1, $2) RETURNING *;
+      VALUES ($1, $2) 
+      RETURNING *;
     `,
       [username, bio]
     );
@@ -38,7 +39,19 @@ class UserRepo {
     return toCamelCase(rows)[0];
   }
 
-  static async update() {}
+  static async update(id, username, bio) {
+    const { rows } = await pool.query(
+      `
+      UPDATE users 
+      SET username = $1, bio = $2
+      WHERE id = $3 
+      RETURNING *;
+    `,
+      [username, bio, id]
+    );
+
+    return toCamelCase(rows)[0];
+  }
 
   static async delete() {}
 }
